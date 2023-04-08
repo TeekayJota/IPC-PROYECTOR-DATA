@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyección</title>
+    <style id="proyector" disabled>
+      body{
+        background-color: blue;
+      }
+      .app-content {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <style id="streaming" disabled>
+      body{
+        background-color: #00FF00;
+      }
+      .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 1700px;
+        height: 200px;
+      }
+      #verse-text{
+        text-align: center;
+        width: 800px;
+        height: 400;
+      }
+      .app-content {
+        width: 1280px;
+        height: 720px;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-content">
+        <div id="verse-text"></div>
+        <div id="quote"></div>
+    </div>
+    <script>
+      window.addEventListener('message', (event) => {
+        if (event.data.type === 'updateVerse') {
+          document.getElementById('verse-text').innerText = event.data.verseText;
+          document.getElementById('quote').innerText = event.data.quote;
+        }
+      });
+    </script>
+  </body>
+</html>
